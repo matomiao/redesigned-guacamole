@@ -247,60 +247,64 @@
     </section>
 
     <!--CONTATTI SECTION -->
-    <section id="contatti">
-        <div class="container mt-md-5 pt-2 pt-md-4">
-            <div class="section-box">
-                <div class="row align-items-stretch d-flex" style="min-height: 600px;">
-                    <!-- Colonna FORM -->
-                    <div class="col-12 col-lg-6 d-flex flex-column justify-content-between">
-                        <div>
-                            <h2>Contatti</h2>
-                            <p>Compila il form qui per qualsiasi informazione</p>
+   <section id="contatti">
+  <div class="container mt-md-5 pt-2 pt-md-4">
+    <div class="section-box">
+      <div class="row align-items-stretch d-flex" style="min-height: 600px;">
+        <!-- FORM -->
+        <div class="col-12 col-lg-6 d-flex flex-column justify-content-between">
+          <div>
+            <h2>Contatti</h2>
+            <p>Compila il form qui per qualsiasi informazione</p>
 
-                            <form id="contatti-form" onsubmit="event.preventDefault(); invia();">
-                                <div class="row gy-3">
-                                    <div class="col-12 col-md-6">
-                                        <label for="nome" class="form-label">Nome</label>
-                                        <input type="text" name="nome" id="nome" placeholder="Nome" class="form-control"
-                                            required>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label for="cognome" class="form-label">Cognome</label>
-                                        <input type="text" name="cognome" id="cognome" placeholder="Cognome"
-                                            class="form-control" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="indirizzo" class="form-label">Email</label>
-                                        <input type="email" name="indirizzo" id="indirizzo" placeholder="Email"
-                                            class="form-control" required>
-                                    </div>
-                                    <div class="col-12">
-                                        <label for="messaggio" class="form-label">Il tuo messaggio</label>
-                                        <textarea id="messaggio" name="messaggio" placeholder="Dubbi?"
-                                            class="form-control" rows="5" required></textarea>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-check mt-2">
-                                            <input class="form-check-input" type="checkbox" id="policy" required>
-                                            <label class="form-check-label" for="policy">
-                                                Dichiaro di aver letto e accettato la Privacy Policy del sito.
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn-invio mt-3">Invia</button>
-                                    </div>
-                                </div>
-                            </form>
+            <!-- il form ora punta direttamente allo script Google e usa un iframe nascosto -->
+            <form
+              id="contatti-form"
+              action="https://script.google.com/macros/s/AKfycbzAzZMpVNqNKK2m_X74ngv2jVJevVZ2xc9vzQRIf6R_4fM_QseDBASayO0pa2fq6Whc/exec"
+              method="POST"
+              target="hidden_iframe"
+              onsubmit="showLoading()"
+            >
+              <div class="row gy-3">
+                <div class="col-12 col-md-6">
+                  <label for="nome" class="form-label">Nome</label>
+                  <input type="text" name="nome" id="nome" placeholder="Nome" class="form-control" required>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label for="cognome" class="form-label">Cognome</label>
+                  <input type="text" name="cognome" id="cognome" placeholder="Cognome" class="form-control" required>
+                </div>
+                <div class="col-12">
+                  <label for="indirizzo" class="form-label">Email</label>
+                  <input type="email" name="email" id="indirizzo" placeholder="Email" class="form-control" required>
+                </div>
+                <div class="col-12">
+                  <label for="messaggio" class="form-label">Il tuo messaggio</label>
+                  <textarea id="messaggio" name="messaggio" placeholder="Dubbi?" class="form-control" rows="5" required></textarea>
+                </div>
+                <div class="col-12">
+                  <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" id="policy" required>
+                    <label class="form-check-label" for="policy">
+                      Dichiaro di aver letto e accettato la Privacy Policy del sito.
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn-invio mt-3">Invia</button>
+                </div>
+              </div>
+            </form>
 
-                            <!-- Feedback -->
-                            <div id="successo" class="alert alert-success d-none mt-3" role="alert">Messaggio inviato
-                            </div>
-                            <div id="errore" class="alert alert-danger d-none mt-3" role="alert">C'è un problema</div>
-                            <div id="loading" class="alert alert-info d-none mt-3" role="alert">Attendi un attimo</div>
-                        </div>
-                    </div>
+            <!-- iframe nascosto -->
+            <iframe name="hidden_iframe" style="display:none;"></iframe>
 
+            <!-- Feedback -->
+            <div id="loading" class="alert alert-info d-none mt-3">Invio in corso…</div>
+            <div id="successo" class="alert alert-success d-none mt-3">Messaggio inviato!</div>
+            <div id="errore" class="alert alert-danger d-none mt-3">Si è verificato un errore.</div>
+          </div>
+        </div>
                     <!-- Colonna MAPPA -->
                     <div class="col-12 col-lg-6 d-flex" style="min-height: 600px; padding-left: 0;">
                         <iframe
