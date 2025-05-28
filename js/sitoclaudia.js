@@ -260,4 +260,10 @@ document.querySelector('iframe[name="hidden_iframe"]')
     }
   });
 
+function showLoading() {
+  document.querySelector("#successo").classList.add("d-none");
+  document.querySelector("#errore").classList.add("d-none");
+  document.querySelector("#loading").classList.remove("d-none");
+}
+
 
