@@ -240,16 +240,24 @@ document.addEventListener('DOMContentLoaded', () => {
 // Chiusura modale Giotto Art Prize da mettere dopo: 2024 ottiene un prestigioso riconoscimento: il primo premio al <em>International Art Prize Giotto</em> a Siracusa. Nello stesso anno
 
 // CONTATTI //
-function showLoading() {
-  document.querySelector("#loading").classList.remove("d-none");
-  document.querySelector("#successo").classList.add("d-none");
-  document.querySelector("#errore").classList.add("d-none");
-}
-
 document.querySelector('iframe[name="hidden_iframe"]')
   .addEventListener("load", function() {
-    document.querySelector("#loading").classList.add("d-none");
-    document.querySelector("#successo").classList.remove("d-none");
-    document.getElementById("contatti-form").reset();
+    // Verifica che la risposta sia "OK"
+    try {
+      const iframe = document.querySelector('iframe[name="hidden_iframe"]');
+      const content = iframe.contentDocument.body.innerText;
+
+      document.querySelector("#loading").classList.add("d-none");
+
+      if (content.includes("OK")) {
+        document.querySelector("#successo").classList.remove("d-none");
+        document.getElementById("contatti-form").reset();
+      } else {
+        document.querySelector("#errore").classList.remove("d-none");
+      }
+    } catch (err) {
+      document.querySelector("#errore").classList.remove("d-none");
+    }
   });
+
 
