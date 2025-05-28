@@ -1,0 +1,752 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Impedisci larghezze fisse che sforano su mobile */
+
+img,
+video,
+iframe,
+canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Elementi problematici */
+
+.modal-content,
+.gallery-modal,
+.fiche,
+.thumb-box .thumb,
+.section-box {
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+/* Impostazioni globali */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+}
+
+body {
+  background-image: url("../images/artemidesfondo.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: grey;
+  background-attachment: fixed;
+  color: white;
+  font-family: 'Noto Serif', serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.19);
+  z-index: -1;
+}
+
+/* Navbar */
+
+.nav-pos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: rgba(140, 20, 20, 0.85);
+}
+
+.navbar .nav-link {
+  color: white !important;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Hero Section */
+
+.hero {
+  height: 75vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 20vh;
+  text-align: center;
+}
+
+/* Titoli */
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1e1e1e;
+  text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.5);
+  padding-top: 10rem;
+}
+
+.section-subtitle {
+  font-family: 'Playfair Display', serif;
+  color: rgb(28, 24, 12);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+/* Sezioni */
+
+.section-box {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 4rem;
+  font-family: 'Noto Serif', serif;
+  color: #111;
+  backdrop-filter: blur(2px);
+}
+
+/* "La mia storia" */
+
+#storia h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: #1e1e1e;
+  margin-bottom: 1rem;
+}
+
+#storia p {
+  font-family: 'Lora', serif;
+  font-size: 1.1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+#storia img {
+  width: 60%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#storia img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Immagini sovrapposte "la mia storia" */
+
+.image-stack {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  max-height: 420px;
+  margin: 0 auto;
+  aspect-ratio: 4 / 5;
+  overflow: visible;
+}
+
+.image-stack img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s 0.3s;
+}
+
+.image-stack .img-bottom {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  transform: rotate(-3deg);
+}
+
+.image-stack .img-top {
+  z-index: 2;
+  bottom: 0;
+  right: 0;
+  transform: rotate(3deg);
+}
+
+.image-stack .img-bottom:hover {
+  z-index: 3;
+  transition-delay: 0s;
+  transform: translate(20%, 20%) rotate(0deg) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.image-stack .img-top:hover {
+  transform: translate(-10%, -10%) rotate(0deg) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Sezione "opere" */
+
+#opere>.container>h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: white;
+}
+
+.thumb-box {
+  cursor: pointer;
+}
+
+.thumb-box .thumb {
+  width: 100%;
+  height: 30rem;
+  border-radius: 8px;
+  transition: transform .2s;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.thumb-box .thumb:hover {
+  transform: scale(1.05);
+}
+
+.thumb-box .thumb-desc {
+  margin-top: 1rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px 3px rgba(1, 0, 0, 0.895);
+}
+
+/* Galleria opere */
+
+.gallery-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.69);
+  z-index: 2000;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery-modal .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.gallery-modal .gallery-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80vw;
+  height: 70vh;
+}
+
+.gallery-modal img#currentImage {
+  max-width: 60vw;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-modal .prev,
+.gallery-modal .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0 1rem;
+}
+
+.gallery-modal .prev {
+  left: 30px;
+}
+
+.gallery-modal .next {
+  right: 30px;
+}
+
+.gallery-modal .gallery-text {
+  margin-left: 1.5rem;
+  max-width: 25vw;
+  color: #fff;
+  font-family: 'Noto Serif', serif;
+}
+
+/* sezione "Mostre ed eventi" */
+
+#mostre {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+#mostre h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #000;
+  text-align: left;
+}
+
+.fiches-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding: 2rem 0;
+}
+
+.fiche {
+  position: relative;
+  width: 500px;
+  height: 250px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  color: #000;
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.fiche::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.fiche1::after {
+  background-image: url('/assets/images/sfondofiche1.webp');
+}
+
+.fiche2::after {
+  background-image: url('/assets/images/sfondofiche2.webp');
+}
+
+.fiche:hover::after {
+  opacity: 1;
+}
+
+.fiche:hover {
+  color: white;
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* overlay contenuti */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  width: 95%;
+  max-width: 1000px;
+  max-height: 85vh;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 0.8rem;
+  right: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  z-index: 10;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-top: 2rem;
+  max-height: 70vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-items: flex-start;
+}
+
+.modal-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 280px;
+  height: 100%;
+  max-height: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-right: 1rem;
+}
+
+.gallery-slide {
+  width: 100%;
+  height: 400px;
+  max-height: 80vh;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #28282886;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.gallery-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  position: relative;
+  background: rgba(0, 0, 0, 0.104);
+  color: #fff;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 0.5rem;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.gallery-nav-container {
+  height: 3rem;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gallery-nav {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.gallery-nav:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.gallery-nav svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: white;
+}
+
+/* Pubblicazioni */
+
+/* Contatti */
+
+/* Mantieni la larghezza piena e altezza del contenitore mappa */
+#contatti .col-lg-6.d-flex iframe {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  flex-grow: 1;
+}
+
+#contatti .row.align-items-stretch {
+  min-height: 600px;
+}
+
+#contatti-form .form-control,
+#contatti-form textarea {
+  background-color: white;
+  color: #000000;
+  border: 1px solid #ddd;
+}
+
+/* Stile bottone */
+.btn-invio {
+  background-color: #b9a429;
+  padding: 10px 20px;
+  color: #ffffff;
+  text-transform: uppercase;
+  border:none;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 1rem;
+}
+
+.btn-invio:hover {
+  background-color: rgba(196, 194, 29, 0.774);
+  color: rgb(252, 252, 252);
+}
+
+
+
+
+
+
+
+
+/* ========================= MEDIA QUERY ============================== */
+
+
+
+/* ===== max-width: 575px (Smartphone) ===== */
+
+@media (max-width: 575px) {
+  .hero {
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    text-align: center;
+    background-position: top;
+  }
+
+  .hero .container {
+    padding: 0;
+    margin: 0;
+  }
+
+  .section-title,
+  .section-subtitle {
+    margin: 0.5rem 0;
+  }
+
+  .nav-pos {
+    position: static;
+  }
+
+  .navbar {
+    padding: 0.5rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-box {
+    padding: 2rem 1rem;
+  }
+
+  #storia img {
+    width: 70%;
+    margin: 1rem auto;
+    display: block;
+  }
+
+  .thumb-box .thumb {
+    height: 18rem;
+  }
+
+  .fiches-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .fiche {
+    width: 100%;
+    height: auto;
+    padding: 2rem 1rem;
+    font-size: 1.1rem;
+  }
+
+  .gallery-modal .gallery-content {
+    flex-direction: column;
+    width: 95vw;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .gallery-modal img#currentImage {
+    max-width: 100%;
+    max-height: 60vh;
+  }
+
+  .gallery-modal .gallery-text {
+    max-width: 100%;
+    margin-left: 0;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-height: 90vh;
+    padding: 1.5rem;
+  }
+
+  .modal-body {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .gallery-slide {
+    height: auto;
+  }
+}
+
+
+/* ===== max-width: 768px (Tablet piccolo / Mobile grande) ===== */
+@media (max-width: 768px) {
+  .image-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-height: none;
+  }
+
+  .image-stack img {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1rem;
+    transform: none !important;
+    box-shadow: none;
+  }
+
+  .modal-body {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modal-gallery {
+    width: 100%;
+  }
+
+  .gallery-slide {
+    max-height: none;
+  }
+
+  .thumb-box .thumb {
+    height: 20rem;
+  }
+
+  .fiche {
+    font-size: 1.2rem;
+  }
+
+  .gallery-modal .prev,
+  .gallery-modal .next {
+    font-size: 2rem;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+}
+
+/* ===== max-width: 991px (Tablet medio) ===== */
+@media (max-width: 991px) {
+  .section-title {
+    font-size: 3rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.2rem;
+  }
+
+}
+/* ===== min-width: 1200px (Desktop grande) ===== */
+@media (min-width: 1200px) {
+  .hero {
+    height: 90vh;
+  }
+
+  .section-title {
+    font-size: 5rem;
+  }
+
+  .modal-content {
+    max-width: 80%;
+  }
+}
