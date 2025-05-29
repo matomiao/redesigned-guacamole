@@ -241,13 +241,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // CONTATTI //
 document.querySelector('iframe[name="hidden_iframe"]')
-  .addEventListener("load", function() {
-    // Verifica che la risposta sia "OK"
+  .addEventListener("load", function () {
+    document.querySelector("#loading").classList.add("d-none");
+
     try {
       const iframe = document.querySelector('iframe[name="hidden_iframe"]');
-      const content = iframe.contentDocument.body.innerText;
+      const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
 
-      document.querySelector("#loading").classList.add("d-none");
+      // Verifica che possiamo accedere al contenuto
+      if (!iframeDoc || !iframeDoc.body || !iframeDoc.body.innerText) {
+        throw new Error("Contenuto iframe non accessibile");
+      }
+
+      const content = iframeDoc.body.innerText.trim();
 
       if (content.includes("OK")) {
         document.querySelector("#successo").classList.remove("d-none");
@@ -256,14 +262,8 @@ document.querySelector('iframe[name="hidden_iframe"]')
         document.querySelector("#errore").classList.remove("d-none");
       }
     } catch (err) {
+      // Fallback generico
+      console.error("Errore nella gestione della risposta:", err);
       document.querySelector("#errore").classList.remove("d-none");
     }
   });
-
-function showLoading() {
-  document.querySelector("#successo").classList.add("d-none");
-  document.querySelector("#errore").classList.add("d-none");
-  document.querySelector("#loading").classList.remove("d-none");
-}
-
-
