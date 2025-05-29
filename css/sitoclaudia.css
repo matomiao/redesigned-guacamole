@@ -380,11 +380,11 @@ body::before {
 }
 
 .fiche1::after {
-  background-image: url('/assets/images/sfondofiche1.webp');
+  background-image: url('../images/sfondofiche1.webp');
 }
 
 .fiche2::after {
-  background-image: url('/assets/images/sfondofiche2.webp');
+  background-image: url('../images/sfondofiche2.webp');
 }
 
 .fiche:hover::after {
