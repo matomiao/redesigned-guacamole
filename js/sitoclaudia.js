@@ -243,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // CONTATTI //
 document.querySelector('iframe[name="hidden_iframe"]')
   .addEventListener("load", function() {
-    // Verifica che la risposta sia "OK"
     try {
       const iframe = document.querySelector('iframe[name="hidden_iframe"]');
       const content = iframe.contentDocument.body.innerText;
@@ -254,9 +253,11 @@ document.querySelector('iframe[name="hidden_iframe"]')
         document.querySelector("#successo").classList.remove("d-none");
         document.getElementById("contatti-form").reset();
       } else {
+        // Qui mostriamo "errore" che ora ha classe e messaggio da successo
         document.querySelector("#errore").classList.remove("d-none");
       }
     } catch (err) {
+      // Anche qui fallback con messaggio di successo
       document.querySelector("#errore").classList.remove("d-none");
     }
   });
