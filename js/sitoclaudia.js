@@ -243,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // CONTATTI //
 document.querySelector('iframe[name="hidden_iframe"]')
   .addEventListener("load", function() {
+    // Verifica che la risposta sia "OK"
     try {
       const iframe = document.querySelector('iframe[name="hidden_iframe"]');
       const content = iframe.contentDocument.body.innerText;
@@ -250,7 +251,7 @@ document.querySelector('iframe[name="hidden_iframe"]')
       document.querySelector("#loading").classList.add("d-none");
 
       if (content.includes("OK")) {
-        document.querySelector("#errore").classList.remove("d-none");  // qui mostra "messaggio inviato!" con stile errore
+        document.querySelector("#successo").classList.remove("d-none");
         document.getElementById("contatti-form").reset();
       } else {
         document.querySelector("#errore").classList.remove("d-none");
@@ -261,6 +262,7 @@ document.querySelector('iframe[name="hidden_iframe"]')
   });
 
 function showLoading() {
+  document.querySelector("#successo").classList.add("d-none");
   document.querySelector("#errore").classList.add("d-none");
   document.querySelector("#loading").classList.remove("d-none");
 }
