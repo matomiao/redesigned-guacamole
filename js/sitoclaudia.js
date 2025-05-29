@@ -239,8 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Chiusura modale Giotto Art Prize da mettere dopo: 2024 ottiene un prestigioso riconoscimento: il primo premio al <em>International Art Prize Giotto</em> a Siracusa. Nello stesso anno
 
+
 // CONTATTI //
-/ CONTATTI //
 document.querySelector('iframe[name="hidden_iframe"]')
   .addEventListener("load", function() {
     // Verifica che la risposta sia "OK"
