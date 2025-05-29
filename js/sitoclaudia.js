@@ -250,20 +250,17 @@ document.querySelector('iframe[name="hidden_iframe"]')
       document.querySelector("#loading").classList.add("d-none");
 
       if (content.includes("OK")) {
-        document.querySelector("#successo").classList.remove("d-none");
+        document.querySelector("#errore").classList.remove("d-none");  // qui mostra "messaggio inviato!" con stile errore
         document.getElementById("contatti-form").reset();
       } else {
-        // Qui mostriamo "errore" che ora ha classe e messaggio da successo
         document.querySelector("#errore").classList.remove("d-none");
       }
     } catch (err) {
-      // Anche qui fallback con messaggio di successo
       document.querySelector("#errore").classList.remove("d-none");
     }
   });
 
 function showLoading() {
-  document.querySelector("#successo").classList.add("d-none");
   document.querySelector("#errore").classList.add("d-none");
   document.querySelector("#loading").classList.remove("d-none");
 }
