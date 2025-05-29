@@ -258,49 +258,41 @@
             <p>Compila il form qui per qualsiasi informazione</p>
 
             <!-- il form ora punta direttamente allo script Google e usa un iframe nascosto -->
-            <form
-              id="contatti-form"
-            >
-              <div class="row gy-3">
-                <div class="col-12 col-md-6">
-                  <label for="nome" class="form-label">Nome</label>
-                  <input type="text" name="nome" id="nome" placeholder="Nome" class="form-control" required>
-                </div>
-                <div class="col-12 col-md-6">
-                  <label for="cognome" class="form-label">Cognome</label>
-                  <input type="text" name="cognome" id="cognome" placeholder="Cognome" class="form-control" required>
-                </div>
-                <div class="col-12">
-                  <label for="indirizzo" class="form-label">Email</label>
-                  <input type="email" name="email" id="indirizzo" placeholder="Email" class="form-control" required>
-                </div>
-                <div class="col-12">
-                  <label for="messaggio" class="form-label">Il tuo messaggio</label>
-                  <textarea id="messaggio" name="messaggio" placeholder="Dubbi?" class="form-control" rows="5" required></textarea>
-                </div>
-                <div class="col-12">
-                  <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox" id="policy" required>
-                    <label class="form-check-label" for="policy">
-                      Dichiaro di aver letto e accettato la Privacy Policy del sito.
-                    </label>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <button type="submit" class="btn-invio mt-3">Invia</button>
-                </div>
-              </div>
-            </form>
+            <form id="contatti-form">
+  <div class="row gy-3">
+    <div class="col-12 col-md-6">
+      <label for="nome" class="form-label">Nome</label>
+      <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required>
+    </div>
+    <div class="col-12 col-md-6">
+      <label for="cognome" class="form-label">Cognome</label>
+      <input type="text" name="cognome" id="cognome" class="form-control" placeholder="Cognome" required>
+    </div>
+    <div class="col-12">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+    </div>
+    <div class="col-12">
+      <label for="messaggio" class="form-label">Il tuo messaggio</label>
+      <textarea name="messaggio" id="messaggio" class="form-control" rows="5" placeholder="Dubbi?" required></textarea>
+    </div>
+    <div class="col-12">
+      <div class="form-check mt-2">
+        <input type="checkbox" class="form-check-input" id="policy" required>
+        <label class="form-check-label" for="policy">Dichiaro di aver letto e accettato la Privacy Policy del sito.</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn-invio mt-3">Invia</button>
+    </div>
+  </div>
+</form>
 
-            <!-- iframe nascosto -->
-            <iframe name="hidden_iframe" style="display:none;"></iframe>
+<!-- Feedback -->
+<div id="loading" class="alert alert-info d-none mt-3">Invio in corso…</div>
+<div id="successo" class="alert alert-success d-none mt-3">Messaggio inviato!</div>
+<div id="errore" class="alert alert-danger d-none mt-3">Si è verificato un errore.</div>
 
-            <!-- Feedback -->
-            <div id="loading" class="alert alert-info d-none mt-3">Invio in corso…</div>
-            <div id="successo" class="alert alert-success d-none mt-3">Messaggio inviato!</div>
-            <div id="errore" class="alert alert-danger d-none mt-3">Si è verificato un errore.</div>
-          </div>
-        </div>
                     <!-- Colonna MAPPA -->
                     <div class="col-12 col-lg-6 d-flex" style="min-height: 600px; padding-left: 0;">
                         <iframe
