@@ -240,38 +240,29 @@ document.addEventListener('DOMContentLoaded', () => {
 // Chiusura modale Giotto Art Prize da mettere dopo: 2024 ottiene un prestigioso riconoscimento: il primo premio al <em>International Art Prize Giotto</em> a Siracusa. Nello stesso anno
 
 // CONTATTI //
-document.getElementById("contatti-form").addEventListener("submit", async function (e) {
-  e.preventDefault();
+/ CONTATTI //
+document.querySelector('iframe[name="hidden_iframe"]')
+  .addEventListener("load", function() {
+    // Verifica che la risposta sia "OK"
+    try {
+      const iframe = document.querySelector('iframe[name="hidden_iframe"]');
+      const content = iframe.contentDocument.body.innerText;
 
-  // Mostra feedback "loading"
-  document.querySelector("#loading").classList.remove("d-none");
-  document.querySelector("#successo").classList.add("d-none");
-  document.querySelector("#errore").classList.add("d-none");
+      document.querySelector("#loading").classList.add("d-none");
 
-  const form = e.target;
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzGjrLqvQTb8yWdnK2k0utA4RBhfI2qBiZEThQwQuRX9MDy-cqEiYk43AIUOANe1gXY/exec", {
-      method: "POST",
-      body: formData
-      // NON usare mode: "no-cors"
-    });
-
-    const text = await response.text();
-
-    document.querySelector("#loading").classList.add("d-none");
-
-    if (text.includes("OK")) {
-      document.querySelector("#successo").classList.remove("d-none");
-      form.reset();
-    } else {
-      console.error("Risposta non valida:", text);
+      if (content.includes("OK")) {
+        document.querySelector("#successo").classList.remove("d-none");
+        document.getElementById("contatti-form").reset();
+      } else {
+        document.querySelector("#errore").classList.remove("d-none");
+      }
+    } catch (err) {
       document.querySelector("#errore").classList.remove("d-none");
     }
-  } catch (error) {
-    console.error("Errore nella richiesta:", error);
-    document.querySelector("#loading").classList.add("d-none");
-    document.querySelector("#errore").classList.remove("d-none");
-  }
-});
+  });
+
+function showLoading() {
+  document.querySelector("#successo").classList.add("d-none");
+  document.querySelector("#errore").classList.add("d-none");
+  document.querySelector("#loading").classList.remove("d-none");
+}
