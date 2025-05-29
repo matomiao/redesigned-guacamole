@@ -242,27 +242,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // CONTATTI //
 document.querySelector('iframe[name="hidden_iframe"]')
-  .addEventListener("load", function() {
-    // Verifica che la risposta sia "OK"
+  .addEventListener("load", function () {
     try {
       const iframe = document.querySelector('iframe[name="hidden_iframe"]');
       const content = iframe.contentDocument.body.innerText;
 
+      // Nasconde sempre il loading
       document.querySelector("#loading").classList.add("d-none");
 
+      // Mostra messaggio di successo o errore
       if (content.includes("OK")) {
         document.querySelector("#successo").classList.remove("d-none");
+        document.querySelector("#errore").classList.add("d-none"); // assicura che errore sia nascosto
         document.getElementById("contatti-form").reset();
       } else {
+        document.querySelector("#successo").classList.add("d-none"); // assicura che successo sia nascosto
         document.querySelector("#errore").classList.remove("d-none");
       }
     } catch (err) {
+      // Nasconde il loading anche in caso di errore JS
+      document.querySelector("#loading").classList.add("d-none");
+      document.querySelector("#successo").classList.add("d-none");
       document.querySelector("#errore").classList.remove("d-none");
     }
   });
 
 function showLoading() {
+  // Mostra il messaggio di attesa e nasconde tutto il resto
   document.querySelector("#successo").classList.add("d-none");
   document.querySelector("#errore").classList.add("d-none");
   document.querySelector("#loading").classList.remove("d-none");
+  return true; // assicura che il form venga inviato
 }
