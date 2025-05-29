@@ -240,27 +240,38 @@ document.addEventListener('DOMContentLoaded', () => {
 // Chiusura modale Giotto Art Prize da mettere dopo: 2024 ottiene un prestigioso riconoscimento: il primo premio al <em>International Art Prize Giotto</em> a Siracusa. Nello stesso anno
 
 // CONTATTI //
-document.getElementById("contatti-form").addEventListener("submit", function (e) {
-  e.preventDefault(); // Impedisce l'invio normale
+document.getElementById("contatti-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-  showLoading();
+  // Mostra feedback "loading"
+  document.querySelector("#loading").classList.remove("d-none");
+  document.querySelector("#successo").classList.add("d-none");
+  document.querySelector("#errore").classList.add("d-none");
 
-  const formData = new FormData(this);
-  const url = "https://script.google.com/macros/s/AKfycbzGjrLqvQTb8yWdnK2k0utA4RBhfI2qBiZEThQwQuRX9MDy-cqEiYk43AIUOANe1gXY/exec";
+  const form = e.target;
+  const formData = new FormData(form);
 
-  fetch(url, {
-    method: "POST",
-    body: formData,
-    mode: "no-cors" // IMPORTANTE: per Google Apps Script, altrimenti blocca CORS
-  })
-    .then(() => {
-      document.querySelector("#loading").classList.add("d-none");
-      document.querySelector("#successo").classList.remove("d-none");
-      document.getElementById("contatti-form").reset();
-    })
-    .catch((error) => {
-      console.error("Errore nell'invio:", error);
-      document.querySelector("#loading").classList.add("d-none");
-      document.querySelector("#errore").classList.remove("d-none");
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzGjrLqvQTb8yWdnK2k0utA4RBhfI2qBiZEThQwQuRX9MDy-cqEiYk43AIUOANe1gXY/exec", {
+      method: "POST",
+      body: formData
+      // NON usare mode: "no-cors"
     });
+
+    const text = await response.text();
+
+    document.querySelector("#loading").classList.add("d-none");
+
+    if (text.includes("OK")) {
+      document.querySelector("#successo").classList.remove("d-none");
+      form.reset();
+    } else {
+      console.error("Risposta non valida:", text);
+      document.querySelector("#errore").classList.remove("d-none");
+    }
+  } catch (error) {
+    console.error("Errore nella richiesta:", error);
+    document.querySelector("#loading").classList.add("d-none");
+    document.querySelector("#errore").classList.remove("d-none");
+  }
 });
