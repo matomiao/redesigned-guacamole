@@ -614,10 +614,16 @@ body::before {
 }
 
 .icons-footer {
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
+  width: 2vw;
+  height: 4vh;
+  margin-right: 8px;
   vertical-align: middle;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 
